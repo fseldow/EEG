@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/tab1_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    
+    >
+    
+      <Button
+                 android:id="@+id/buttonConnect"
+                 android:layout_width="300dip"
+                 android:layout_height="40dip"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginTop="14dp"
+                 android:layout_centerHorizontal="true"
+                  />
+      
+      <Button
+                 android:id="@+id/buttonStart"
+                 android:layout_width="80dip"
+                 android:layout_height="80dip"
+                 android:layout_alignParentBottom="true"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginBottom="30dp"
+                 android:background="@drawable/start3"
+                
+                  />
+      
+      
+
+      
+       <EditText
+                 android:id="@+id/editText1"
+                 android:layout_width="250dip"
+                 android:layout_height="50dip"
+                 android:layout_below="@+id/buttonConnect"
+                 android:layout_marginTop="16dp"
+                 android:background="@drawable/huakuai2"
+                 android:layout_centerHorizontal="true"
+                 android:ems="10" />
+       
+
+             
+                 
+                 
+                 <Button
+                 android:id="@+id/buttonForward"
+                 android:layout_width="140dip"
+                 android:layout_height="50dip"
+                 android:layout_above="@+id/buttonStart"
+                 android:layout_marginBottom="10dp" 
+                 android:layout_alignParentLeft="true"
+                 android:layout_marginLeft="10dp"
+                 />
+                 
+                 <Button
+                 android:id="@+id/buttonReverse"
+                 android:layout_width="140dip"
+                 android:layout_height="50dip"
+                 android:layout_above="@+id/buttonStart"
+                 android:layout_marginBottom="10dp" 
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="20dp" 
+                 />
+                 
+                 
+             
+       
+
+             
+             <TextView
+                 android:id="@+id/textStart"
+                 android:layout_width="80dip"
+                 android:layout_height="80dip"
+                 android:layout_alignParentBottom="true"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginBottom="30dp"
+                 android:gravity="center"
+                
+                  />
+
+             
+
+             <TextView
+                 android:id="@+id/textView1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginLeft="17dp"
+                 android:layout_marginTop="60dp"
+                 android:layout_alignParentLeft="true"
+                 android:text="xiang" 
+                 android:visibility="invisible"/>"
+
+            
+
+
+   
+
+
+             <TextView
+                 android:id="@+id/textTime"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_above="@+id/buttonStart"
+                 android:layout_marginBottom="60dp"
+                 android:layout_centerHorizontal="true"
+                 android:visibility="invisible"
+                 />
+             
+             
+             
+             <com.github.mikephil.charting.charts.LineChart
+                  android:id="@+id/REALTIMEchart1"
+                  android:layout_width="340dip"
+                  android:layout_height="wrap_content"
+                  android:layout_centerHorizontal="true"
+                  android:layout_above="@+id/textTime"
+                  android:layout_marginBottom="10dp"
+                  android:layout_below="@+id/editText1" 
+                  android:layout_marginTop="5dp"
+                  android:visibility="invisible"
+                  />
+             
+              <TextView 
+                  android:id="@+id/textView11" 
+                 android:layout_width="100dip" 
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="15dp"
+                 android:layout_below="@+id/editText1"
+                 android:layout_marginTop="12dp"/>
+              
+              
+			<com.srtp.Attentionreader.MyTimePicker
+                 android:id="@+id/IB1"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_above="@+id/buttonReverse"
+                 android:layout_centerHorizontal="true"
+                 />
+
+			<Spinner
+			    android:id="@+id/spinnerExperimentGameChoice"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignLeft="@+id/textTime"
+			    android:layout_below="@+id/textView11" />
+
+			<Button
+			    android:id="@+id/buttonTest"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentLeft="true"
+			    android:layout_alignTop="@+id/REALTIMEchart1"
+			    android:text="测试" />
+          
+     </RelativeLayout>   

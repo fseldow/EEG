@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <resources>
+        <string-array name="bgcoloraray">
+            <item >Aliceblue</item>
+            <item >DimGray</item>
+            
+        </string-array>
+        <string-array name="bgcvalue">
+             <item >#f0f8ff</item>
+            <item >#696969</item>
+        </string-array>
+        
+        <string-array name="modulearray">
+            <item >Normal</item>
+            <item >Experiment</item>
+            <item >Player</item>
+        </string-array>
+        
+        <string-array name="modulevalue">
+             <item >"nomal"</item>
+            <item >"experiment"</item>
+            <item >"player"</item>
+        </string-array>
+    </resources>

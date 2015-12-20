@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/tab2_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+      <ImageButton
+          android:id="@+id/imageButtonSignal"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="108dp"
+          android:src="@drawable/linear" 
+          android:background="@drawable/linear"/>
+
+      <ImageButton
+          android:id="@+id/imageButtonAll"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignTop="@+id/imageButtonSometimes"
+          android:layout_toRightOf="@+id/imageButtonSignal"
+          android:src="@drawable/all" 
+          android:background="@drawable/all"/>
+
+      <ImageButton
+          android:id="@+id/imageButtonSometimes"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/imageButtonSignal"
+          android:layout_marginLeft="36dp"
+          android:layout_marginTop="54dp"
+          android:src="@drawable/pie"
+          android:background="@drawable/pie" />
+
+      <Spinner
+          android:id="@+id/spinner1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/imageButtonSometimes"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="55dp"
+          android:scrollbarStyle="insideInset"
+          android:scrollbars="horizontal"
+          android:visibility="visible" />
+
+     </RelativeLayout>  

@@ -1,0 +1,274 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/srtp_bg"
+    >
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/buttonSchulte1"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte2"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte3"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte4"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/buttonSchulte5"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/buttonSchulte6"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte7"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte8"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte9"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte10"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/buttonSchulte11"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte12"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte13"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number" 
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/buttonSchulte14"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte15"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" 
+            >
+
+            <Button
+                android:id="@+id/buttonSchulte16"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte17"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number" 
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/buttonSchulte18"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number" 
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/buttonSchulte19"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number" 
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/buttonSchulte20"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number" 
+                android:textStyle="normal"/>
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+             >
+
+            <Button
+                android:id="@+id/buttonSchulte21"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte22"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/buttonSchulte23"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number" 
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/buttonSchulte24"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number" 
+                android:textStyle="normal"
+                />
+
+            <Button
+                android:id="@+id/buttonSchulte25"
+                android:layout_width="68dip"
+                android:layout_height="68dip"
+                android:onClick="Number"
+                android:textStyle="normal" />
+        </TableRow>
+    </TableLayout>
+
+    <ImageView
+        android:id="@+id/imageTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:src="@drawable/begin2" />
+
+    <Button
+        android:id="@+id/buttonBeginGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tableLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:onClick="GameInit"
+        android:textColor="#FFFF7F00"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:background="#00000000"
+        android:text="START"></Button>"
+
+    <TextView
+        android:id="@+id/recordView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tableLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp"
+        android:textColor="#FFFFFF30"
+        android:textSize="40sp"
+        android:text="SCHULTE" />
+
+    <ImageView
+        android:id="@+id/imageViewReturn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:onClick="Return"
+        android:src="@drawable/icon_home_nor" />
+
+</RelativeLayout>

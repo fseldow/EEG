@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<com.fortysevendeg.swipelistview.SwipeListView
+        android:id="@+id/example_ztc_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"        
+        android:layout_marginTop="23dp"
+        swipe:swipeBackView="@+id/id_back"
+        swipe:swipeCloseAllItemsWhenMoveList="true"
+        swipe:swipeFrontView="@+id/id_front"
+        swipe:swipeMode="left"
+        swipe:swipeOffsetLeft="200dip"
+        swipe:swipeOffsetRight="0dp"
+        swipe:swipeOpenOnLongPress="true" >
+    </com.fortysevendeg.swipelistview.SwipeListView>
+    
+</LinearLayout>
