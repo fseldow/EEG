@@ -5,6 +5,7 @@
     android:id="@+id/tab2_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/beijing2"
     >
 
       <ImageButton
@@ -14,8 +15,8 @@
           android:layout_alignParentTop="true"
           android:layout_centerHorizontal="true"
           android:layout_marginTop="108dp"
-          android:src="@drawable/linear" 
-          android:background="@drawable/linear"/>
+          android:src="@drawable/signal" 
+          android:background="@drawable/signal"/>
 
       <ImageButton
           android:id="@+id/imageButtonAll"
@@ -34,18 +35,7 @@
           android:layout_below="@+id/imageButtonSignal"
           android:layout_marginLeft="36dp"
           android:layout_marginTop="54dp"
-          android:src="@drawable/pie"
-          android:background="@drawable/pie" />
-
-      <Spinner
-          android:id="@+id/spinner1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/imageButtonSometimes"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="55dp"
-          android:scrollbarStyle="insideInset"
-          android:scrollbars="horizontal"
-          android:visibility="visible" />
+          android:src="@drawable/sometime"
+          android:background="@drawable/sometime" />
 
      </RelativeLayout>  

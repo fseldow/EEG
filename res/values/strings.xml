@@ -4,18 +4,5 @@
     <string name="app_name">Attentionreader</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="bgcolor">背景颜色</string>
-    <string name="linecolor">线条颜色</string>
-    <string name="prtype">显示种类</string>
-    <string name="bgcolorsummary">这里可以修改数据显示的背景颜色</string>
-    <string name="Share">Share</string>
-    <string name="help">help</string>
-    
-    <!--  Strings for possible PreferenceActivity Back/Next buttons -->
-    <string name="back_button_label">Back</string>
-    <string name="next_button_label">Next</string>
-
-    <!-- Optional button to Skip a PreferenceActivity [CHAR LIMIT=20] -->
-    <string name="skip_button_label">Skip</string>
 
 </resources>

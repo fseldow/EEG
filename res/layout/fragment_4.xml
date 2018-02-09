@@ -1,31 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        >
-        <ListPreference 
-            android:entries="@array/bgcoloraray" 
-            android:entryValues="@array/bgcvalue" 
-            android:key="bgcolor" 
-            android:dependency="bgcolor" 
-            android:selectable="true" 
-            android:title="@string/bgcolor" 
-            android:defaultValue="#f0f8ff" 
-            android:summary="@string/bgcolorsummary"
-            android:layout="@layout/custom_preference_layout"
-            />
-        <ListPreference 
-            android:entries="@array/modulearray" 
-            android:entryValues="@array/modulevalue" 
-            android:key="module" 
-            android:dependency="module" 
-            android:selectable="true" 
-            android:title="模式选择" 
-            android:defaultValue="experiment" 
-            android:summary="在这里可以选择运行模式"
-            android:layout="@layout/custom_preference_layout"/>
-        <PreferenceScreen
-        android:key="delete_files"
-        android:title="数据删除"
-        android:summary="这里可以对数据进行删除"
-        android:layout="@layout/custom_preference_layout" >
-        </PreferenceScreen>
-    </PreferenceScreen>
+<?xml version="1.0" encoding="utf-8"?>
+  <RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/tab4_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+</RelativeLayout>

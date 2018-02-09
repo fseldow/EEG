@@ -1,49 +1,32 @@
 package com.srtp.Attentionreader;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.neurosky.thinkgear.TGDevice;
-import com.srtp.Attentionreader.extra.preferenceActivity;
+import com.srtp.Attentionreader.R.id;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.R.integer;
 import android.bluetooth.BluetoothAdapter;
 import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
-import com.games.Test;
+import com.github.mikephil.charting.*;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
@@ -60,33 +43,23 @@ public class FragmentPage1 extends Fragment{
 	private int hour;
 	private int minute;
 	private int second;
-	public static int count;
-	public SQLiteDatabase db;
+	private SQLiteDatabase db;
 	private LineChart chart1;
-	private Button ButtonStart;
-	private Button ButtonForward;
-	private Button ButtonReverse;
-	private Button ButtonConnect;
-	private Button buttonTest;
-	public Spinner spin;
+	public Button ButtonStart;
+	public Button ButtonForward;
+	public Button ButtonReverse;
+	public Button ButtonConnect;
 	public MyTimePicker timeP;
 	 public TextView tv;
 	 public TextView tvt;//显示时间
 	 public TextView ttv;
 	 public TextView TextStart;
+	 private int flagatt;
+	 private int flagmed;
 	 private int timenum;
 	 private  LineDataSet lineDataSet;
-	 private EditText nameoftable;
-	  public String targetsql;
-	  private int state;
-	  private Thread thread;
-	  public static boolean experiment;
-	  private List<String> game_list = new ArrayList<String>();
-	  private ArrayAdapter Adapter;
-	  public static String userName;
-	
+	 
 	  
-	  public static Activity instance;
 	 
 	 BluetoothAdapter mbluetoothadapter;
 	 private ArrayList<String> xValueStrings = new ArrayList<String>();
@@ -101,7 +74,7 @@ public class FragmentPage1 extends Fragment{
         super.onCreate(savedInstanceState);
         
     mbluetoothadapter=((MainActivity) getActivity()).getbluetoothAdaoter();
-    Log.i("exp", "bluthok");   
+    Log.e("exp", "bluthok");   
     OnOff=false;
     
         if(mbluetoothadapter == null) {
@@ -124,7 +97,7 @@ public class FragmentPage1 extends Fragment{
 //*************************************************        
     	String fileName = "mind";
 		String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-		path += "/" + "AttReader";
+		path += "/" + "HelloEEG";
 		File destDir = new File(path);
 		  if (!destDir.exists()) {
 		   destDir.mkdirs();//创建文件夹
@@ -136,15 +109,15 @@ public class FragmentPage1 extends Fragment{
 		
 		db =SQLiteDatabase.openOrCreateDatabase(path, null);//创建sqlite
 		db.execSQL("create table if not exists mindwave(foc int, med int)");//sqlite语句创建表名为mindwave
-		 Log.i("exp", "sqliteok");  	
+		 Log.e("exp", "sqliteok");  	
   
  
 		}
-
-   public void onDestroyView(){
-	   experiment=false;
-	   super.onDestroyView();
-   }
+    public void onDestroyView(){
+    	if(Data)Toast.makeText(getActivity(), "Interrupt", Toast.LENGTH_LONG).show();
+    	Data=false;
+    	super.onDestroyView();
+    }
 
 	
 	public void onDestroy() {
@@ -157,13 +130,9 @@ public class FragmentPage1 extends Fragment{
     }
 	
 	
-	//////////////////////////////////////////////////////////////
 	
 	
-	
-	
-	
-  private final  Handler handler = new Handler() {
+  private final Handler handler = new Handler() {
         @Override
         
         public void handleMessage(Message msg) {
@@ -175,14 +144,7 @@ public class FragmentPage1 extends Fragment{
         	   		animation.setDuration(750);
             		ButtonStart.startAnimation(animation);
             		tvt.setText(hour+":"+minute+":"+second);
-            		if(Error()){
-            			if(instance!=null)FragmentPage1.instance.finish();
-            			Data=false;
-            			tvt.setText(hour+":"+minute+":"+second);
-            			tvt.append("\nPoor Connection, operate again!");
-            			TextStart.setText("Restart");
-            		    ButtonStart.setBackgroundResource(R.drawable.start3);
-            		}
+            		
             		
         		 
         		break;
@@ -192,84 +154,6 @@ public class FragmentPage1 extends Fragment{
         	case 30000:
         		
         		ButtonStart.setBackgroundResource(R.drawable.start3);
-        		break;
-        		
-        	case 40000:
-        		state+=1;
-        		if(state<4){
-        			Data=true;
-        			try{
-        				TextStart.setText("Stop");
-        				SimpleDateFormat fffDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-        			    Date aDate = new Date(System.currentTimeMillis());
-        			    String str = "Date_"+fffDate.format(aDate);
-						createnewsqltable(str);
-						targetsql = str;
-						System.out.println(targetsql);
-						Log.e("filename",str+"");
-						Log.e("filename",state+"");
-			    	}
-			    	catch(Exception e)
-			    	{
-			    		Log.e("sql", e.toString());
-			    	}
-        			
-        			thread=new Thread(new timeReverseExperiment ());
-        			thread.start();
-        			if(state==1||state==3){
-        				Intent intent = new Intent();
-        				
-        				switch(spin.getFirstVisiblePosition()){
-        				case 0:
-        					intent.setClass(getActivity(), com.games.GameStare.class);
-        					break;
-        				case 1:
-        					intent.setClass(getActivity(), com.games.GameWaterDrop.class);
-        					break;
-        				case 2:
-        					intent.setClass(getActivity(), com.games.GameTable.class);
-        					break;
-        				case 3:
-        					intent.setClass(getActivity(), com.games.GameSchulte.class);
-        					break;
-        				case 4:
-        					intent.setClass(getActivity(), com.games.GameNumber.class);
-        					break;
-        				}
-        				spin.setVisibility(View.INVISIBLE);
-    	            startActivity(intent);  
-        			}
-        		}
-        		else {
-        			TextStart.setText("Restart");
-        		    ButtonStart.setBackgroundResource(R.drawable.start3);
-        		    spin.setVisibility(View.VISIBLE);
-        		    
-        		}
-        		break;
-        		
-        	case 50000:
-        		Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);  
-                Ringtone r = RingtoneManager.getRingtone(getActivity().getApplicationContext(), notification);  
-                r.play();
-                if(instance!=null)FragmentPage1.instance.finish();
-        		TextStart.setText("Wait");
-        		break;
-        		
-        	case 60000:
-        		try{
-        			TextStart.setText("Stop");
-        			SimpleDateFormat fffDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-        		    Date aDate = new Date(System.currentTimeMillis());
-        		    String str = "Date_"+userName+fffDate.format(aDate);
-        			createnewsqltable(str);
-        			targetsql = str;
-        			System.out.println(targetsql);
-        			Log.e("filename",str+"");
-        			Log.e("filename",state+"");
-            	}catch (Exception ef) {
-        			ef.printStackTrace();
-        			}
         		break;
 
         	
@@ -297,25 +181,16 @@ public class FragmentPage1 extends Fragment{
 	                	tv.setText("not paired\n");
 	                	break;
 	                case TGDevice.STATE_DISCONNECTED:
-	                	
-	                	ButtonConnect.setBackgroundResource(R.drawable.connections);
-	                	tv.setText("Disconnected mang\n");
-	                	if(Data==true){
-	                	TextStart.setText("Restart");
-	        		    ButtonStart.setBackgroundResource(R.drawable.start3);
-	        		    if(experiment==true) spin.setVisibility(View.VISIBLE);
-	                	}
-	                	if(instance!=null)FragmentPage1.instance.finish();
 	                	Data=false;
 	                	OnOff=false;
+	                	ButtonConnect.setBackgroundResource(R.drawable.connections);
+	                	tv.setText("Disconnected mang\n");
                 }
 
                 break;
             case TGDevice.MSG_POOR_SIGNAL:
-            	Log.e("poor","");
             		//signal = msg.arg1;
             		//tv.setText("PoorSignal: " + msg.arg1 + "\n");
-            	 
                 break;
             case TGDevice.MSG_RAW_DATA:	  
             		//raw1 = msg.arg1;
@@ -328,14 +203,13 @@ public class FragmentPage1 extends Fragment{
             case TGDevice.MSG_ATTENTION:
             	int att = msg.arg1;
         	    tv.setText("Attention: " + msg.arg1 + "\n");
-        	    if(Data&&att!=0){
-        		count=count+1;
+        	    if(Data){
+        		
         	    ContentValues values = new ContentValues();
         	    values.put("foc", att);
-        	    db.insert(targetsql, null, values);
+        	    db.insert("mindwave", null, values);
         	    getLineData(att, 1, timenum);
         	    timenum++;
-
         	    /*flagatt = 1;
         	    if(flagatt==1&&flagmed==1)
         	    {
@@ -355,7 +229,7 @@ public class FragmentPage1 extends Fragment{
        	    
        		values.put("med", med);
            	
-               db.insert(targetsql, null, values);
+               db.insert("mindwave", null, values);
               
                /*getLineData(med, 2, timenum);
                flagmed = 1;
@@ -389,18 +263,16 @@ public class FragmentPage1 extends Fragment{
         }
     };
     
-    
-    
+
     
 	
     
     
         	
 
-	@SuppressLint("SimpleDateFormat")
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
 		View v =  inflater.inflate(R.layout.fragment_1, null);		
 	      if (v == null) {
 	             Log.i("FragmentA", "onCreateView:view is null");
@@ -409,10 +281,6 @@ public class FragmentPage1 extends Fragment{
 	              Log.i("FragmentA", "onCreateView:view is NOOOOOOOOOOOOOOOOT null");
 	          }
 //*********************************************************************************************	      
-	     
-	        if(MainActivity.Module.equals("experiment"))experiment=true;
-	        else experiment=false;
-	        //************************************************
 	      timenum=0;
 	      lineDataSet = new LineDataSet(null, "attention eeg data"); 
 	      chart1 = (LineChart) v.findViewById(R.id.REALTIMEchart1);
@@ -439,13 +307,20 @@ public class FragmentPage1 extends Fragment{
 	      LineData lineData = new LineData();  
 	      chart1.setData(lineData);
 	      lineData.addDataSet(lineDataSet);
-	         Legend l = chart1.getLegend();
+	      //Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
 
+	        // get the legend (only possible after setting data)
+	        Legend l = chart1.getLegend();
+
+	        // modify the legend ...
+	        // l.setPosition(LegendPosition.LEFT_OF_CHART);
 	        l.setForm(LegendForm.LINE);
-	         l.setTextColor(Color.WHITE);
+	        //l.setTypeface(tf);
+	        l.setTextColor(Color.WHITE);
 
 	        XAxis xl = chart1.getXAxis();
-	         xl.setTextColor(Color.WHITE);
+	        //xl.setTypeface(tf);
+	        xl.setTextColor(Color.WHITE);
 	        xl.setDrawGridLines(false);
 	        xl.setAvoidFirstLastClipping(true);
 
@@ -458,59 +333,41 @@ public class FragmentPage1 extends Fragment{
 	        YAxis rightAxis = chart1.getAxisRight();
 	        rightAxis.setEnabled(false);
 //*****************************************************************************************************	      
-	      nameoftable = (EditText)v.findViewById(R.id.editText1);
-	      SimpleDateFormat fffDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-	      Date aDate = new Date(System.currentTimeMillis());
-	      String str = "Date_"+fffDate.format(aDate);
-	      nameoftable.setText(str);
-	      nameoftable.setTextColor(Color.WHITE);
 	      Clock=1;
 	      Data=false;
 	      hour=0;
 	      minute=0;
 	      second=0;
-	      state=0;
-	      //experiment=true;
-	      instance=null;
 	      ButtonStart=(Button)v.findViewById(R.id.buttonStart);
 	      ButtonForward=(Button)v.findViewById(R.id.buttonForward);
 	      ButtonReverse=(Button)v.findViewById(R.id.buttonReverse);
 	      ButtonConnect=(Button)v.findViewById(R.id.buttonConnect);
-	      spin=(Spinner)v.findViewById(R.id.spinnerExperimentGameChoice);
 	      timeP=(MyTimePicker)v.findViewById(R.id.IB1);
 	      tv=(TextView)v.findViewById(R.id.textView11);
 	      tvt=(TextView)v.findViewById(R.id.textTime);
 	      ttv=(TextView)v.findViewById(R.id.textView1);
 	      TextStart=(TextView)v.findViewById(R.id.textStart);
-	      buttonTest=(Button)v.findViewById(R.id.buttonTest);
 	      
 	      setStyle();
-	       
+	      
+	      
+	      Log.e("tvt", tvt.getText()+"");
 	       if(ButtonStart ==null||ButtonForward==null||ButtonReverse==null)
 	        {
 	        	Log.e("exp", "hehe");
 	        }
 	    	try {
-				
-	    		ButtonStart.setOnClickListener(new StartOnClickListener());
+				ButtonStart.setOnClickListener(new StartOnClickListener());
 				ButtonConnect.setOnClickListener(new ConnectOnClickListener());
 				ButtonReverse.setOnClickListener(new ReverseOnClickListener());
 				ButtonForward.setOnClickListener(new ForwardOnClickListener());
-				buttonTest.setOnClickListener(new TestOnClickListener());
 				ButtonStart.setOnTouchListener(new TouchButton());
-				
 			} catch (RuntimeException e) {
 				Log.e("exp", e.toString());
 			}
-	    	
-	    	 
+	    	Log.e("exp", "buttonok");
 	    	return v;}
-	public void createnewsqltable(String name)
-	{
-		
-		db.execSQL("create table if not exists "+name+"(foc int, med int)");//sqlite语句创建表名为mindwave
-		 Log.e("exp", name); 
-	}
+	
 	
 	class timeForward implements Runnable{
         
@@ -559,107 +416,6 @@ class timeReverse implements Runnable{
         }
 }
 
-class timeReverseExperiment implements Runnable{
-    
-    @Override
-    public void run() { 
-    	count=0;
-            // TODO Auto-generated method stub
-    	switch (state){
-		case 0:
-			second=0;minute=1;hour=0;
-			break;
-		case 1:
-			second=0;minute=5;hour=0;
-			break;
-		case 2:
-			second=0;minute=1;hour=0;
-			break;
-		case 3:
-			second=0;minute=5;hour=0;
-			break;
-		}
-    	while(Data){
-    		
-    		 
-			try {
-				
-				Thread.sleep(1000);
-				
-				if(second==0){second=59;if(minute==0){minute=59;hour--;}else minute--;}
-				else second--;
-				if(hour==0&&minute==0&&second==0){Data=false;}
-				
-				handler.sendEmptyMessage(10000);
-				} catch (Exception ef) {
-				ef.printStackTrace();
-				}
-		}
-    	if(hour==0&&minute==0&&second==0)
-           try {
-				handler.sendEmptyMessage(50000);
-				
-				Thread.sleep(1000);
-				} catch (Exception ef) {
-				ef.printStackTrace();
-				}
-    	if(hour==0&&minute==0&&second==0)handler.sendEmptyMessage(40000);
-    	
-    	
-           
-    }
-}
-
-class timeReverseTestExperiment implements Runnable{
-    
-    @Override
-    public void run() { 
-    	count=0;
-            // TODO Auto-generated method stub
-    	minute=1;
-    	second=0;
-    	handler.sendEmptyMessage(60000);
-    	
-    	while(Data){
-			try {		
-				Thread.sleep(1000);	
-				if(second==0){second=59;if(minute==0){minute=59;hour--;}else minute--;}
-				else second--;
-				if(hour==0&&minute==0&&second==0){Data=false;}
-				handler.sendEmptyMessage(10000);
-				} catch (Exception ef) {
-				ef.printStackTrace();
-				}
-		}
-    	if(hour==0&&minute==0&&second==0)
-           try {
-				handler.sendEmptyMessage(50000);
-				
-				Thread.sleep(1000);
-				} catch (Exception ef) {
-				ef.printStackTrace();
-				}
-    	if(hour==0&&minute==0&&second==0){
-    		Intent intent=new Intent();
-    		intent.setClass(getActivity(), com.games.Test.class);
-				startActivity(intent); 
-    	}
-    	handler.sendEmptyMessage(60000);
-    	Data=true;
-    	while(Data){
-                try {
-				
-				Thread.sleep(1000);
-				if(Test.ifEnd){Data=false;}
-				} catch (Exception ef) {
-				ef.printStackTrace();
-				}
-    		
-    	}
-    	handler.sendEmptyMessage(50000);         
-    }
-}
-
 
 
 
@@ -704,13 +460,11 @@ private void getLineData(int data,int eegindex,int num)
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				//OnOff=true;
+				
 				
 				
 				if(OnOff){
-					count=0;
-					spin.setVisibility(View.GONE);
-					getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+				
 				if(Data==false){
 					Data=true;
 					
@@ -721,25 +475,7 @@ private void getLineData(int data,int eegindex,int num)
 							chart1.setVisibility(View.VISIBLE);
 							tv.setTextColor(0xFF000000);
 						    TextStart.setText("Stop");
-						    try{
-					    		String string2 = nameoftable.getText().toString();
-								createnewsqltable(string2);
-								targetsql = string2;
-								System.out.println(targetsql);
-					    	}
-					    	catch(Exception e)
-					    	{
-					    		Log.e("sql", e.toString());
-					    	}
-					    	
-				   			if(experiment==false){
 						    new Thread(new timeForward ()).start();
-				   			}
-				   			else
-				   			{
-				   				thread=new Thread(new timeReverseExperiment ());
-				   				thread.start();
-				   			}
 						    
 						}
 						else{
@@ -750,41 +486,17 @@ private void getLineData(int data,int eegindex,int num)
 						    second=0;
 						    tv.setText(hour+":"+minute+""+second);
 						    tvt.setVisibility(View.VISIBLE);
-							timeP.setVisibility(View.INVISIBLE);
+							timeP.setVisibility(View.GONE);
 							chart1.setVisibility(View.VISIBLE);
-							try{
-					    		String string2 = nameoftable.getText().toString();
-								createnewsqltable(string2);
-								targetsql = string2;
-								System.out.println(targetsql);
-					    	}
-					    	catch(Exception e)
-					    	{
-					    		Log.e("sql", e.toString());
-					    	}
-				   			
-							if(experiment==false){
-							    new Thread(new timeReverse ()).start();
-					   			}
-					   		else
-					   		{
-					   			thread=new Thread(new timeReverseExperiment ());
-					   			thread.start();
-					   		}
-							    
+						    new Thread(new timeReverse ()).start();
 						    
 						}
 					
 				}
 				else {
 					
-					
 					Data=false;
 					TextStart.setText("Start");
-					if(experiment==true){
-						spin.setVisibility(View.VISIBLE);
-						state=0;
-					}
 					
 				}
 				}
@@ -797,8 +509,6 @@ private void getLineData(int data,int eegindex,int num)
 
 	   		@Override
 	   		public void onClick(View v) {
-	   			  
-	   			
 	   			if(Data==false){
 	   				timeP.setVisibility(View.INVISIBLE);
 	   				ButtonReverse.setBackgroundResource(R.drawable.daojishi2);
@@ -822,6 +532,7 @@ private void getLineData(int data,int eegindex,int num)
 	   			
 	   			if(tgDevice.getState() != TGDevice.STATE_CONNECTING && tgDevice.getState() != TGDevice.STATE_CONNECTED)
 	   	       	 tgDevice.connect(rawEnabled);
+	   			
 	   			
 	   			
 	   			
@@ -854,24 +565,6 @@ private void getLineData(int data,int eegindex,int num)
 	   		}
 	   	}
 	   	
-	   	private class TestOnClickListener implements View.OnClickListener{
-
-	   		@Override
-	   		public void onClick(View v) {
-	   			Intent intent=new Intent();
-	   			if(experiment==false){
-	   				intent.setClass(getActivity(), com.games.Test.class);
-	   				startActivity(intent);  
-	   			}
-	   			else{
-	   				if(OnOff==true){
-	   					inputNameDialog();
-	   				}
-	   			}
-	   			
-	   		}
-	   	}
-	   	
 	    public class TouchButton implements View.OnTouchListener {     
 	    	  @Override    
 	    	  public boolean onTouch(View v, MotionEvent event) {     
@@ -884,51 +577,6 @@ private void getLineData(int data,int eegindex,int num)
 	    	   return false;     
 	    	  }     
 	    	 }
-	    
-	    public boolean Error(){
-	    	long time;
-	    	if(experiment==true){
-	    		if(state%2==0)time=60-second;
-	    		else time=60-second+60*(5-minute-1);
-	    	}
-	    	else{
-	    		if(Clock==1)
-	    		time=3600*hour+60*minute+second;
-	    		else
-	    			time=3600*(timeP.getHour()-1-hour)+60*(timeP.getMinute()-1-hour)+60-second;
-	    	}
-	    	
-	    	Log.e(count+"",time+"");
-	    	if(time*0.7>count&&time>30)
-	    	return true;
-	    	else 
-	    		return false;
-	    }
-	    
-	    private void inputNameDialog() {
-
-			final EditText inputServer = new EditText(getActivity());
-			inputServer.setText("");
-	        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-	        builder.setTitle("请输入姓名").setIcon(android.R.drawable.ic_dialog_info).setView(inputServer)
-	                .setNegativeButton("Cancel", null);
-	        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-
-	            public void onClick(DialogInterface dialog, int which) {
-	               userName=inputServer.getText().toString();
-	               if(!userName.equals("")){
-	            	   Data=true;
-  					tvt.setText(hour+":"+minute+":"+second);
-  					tvt.setVisibility(View.VISIBLE);
-  					spin.setVisibility(View.GONE);
-  					chart1.setVisibility(View.VISIBLE);
-  					
-  					new Thread(new timeReverseTestExperiment()).start();
-	               }
-	             }
-	        });
-	        builder.show();
-	    }
 	   	
 	   	public void setStyle(){
 	   		//ButtonStart.setBackgroundColor(0x00000000);
@@ -941,23 +589,6 @@ private void getLineData(int data,int eegindex,int num)
 		    else {
 		    	ButtonConnect.setBackgroundResource(R.drawable.connections);
 		    }
-	   		if(game_list.size()==0){
-	   		game_list.add("凝视训练");    
-	        game_list.add("水滴测试");    
-	        game_list.add("表格寻数");    
-	        game_list.add("舒尔特表");    
-	        game_list.add("数字复述");
-	   		}
-	        Adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, game_list);
-	        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	        spin.setAdapter(Adapter);
-	        spin.setBackgroundColor(0xFFFFFFFF);
-	   		if(experiment){
-	   			spin.setVisibility(View.VISIBLE);
-	   		}
-	   		else{
-	   			spin.setVisibility(View.GONE);
-	   		}
 		    timeP.setVisibility(View.GONE);
 		    tv.setText(null);
 		    tv.setTextColor(0xFFFFFFFF);

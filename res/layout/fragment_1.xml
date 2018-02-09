@@ -6,6 +6,7 @@
     android:id="@+id/tab1_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/beijing2"
     
     >
     
@@ -92,7 +93,7 @@
                  android:layout_marginLeft="17dp"
                  android:layout_marginTop="60dp"
                  android:layout_alignParentLeft="true"
-                 android:text="xiang" 
+                 android:text="项目名称：" 
                  android:visibility="invisible"/>"
 
             
@@ -142,20 +143,7 @@
                  android:layout_above="@+id/buttonReverse"
                  android:layout_centerHorizontal="true"
                  />
+                  
 
-			<Spinner
-			    android:id="@+id/spinnerExperimentGameChoice"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_alignLeft="@+id/textTime"
-			    android:layout_below="@+id/textView11" />
-
-			<Button
-			    android:id="@+id/buttonTest"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_alignParentLeft="true"
-			    android:layout_alignTop="@+id/REALTIMEchart1"
-			    android:text="测试" />
           
      </RelativeLayout>   

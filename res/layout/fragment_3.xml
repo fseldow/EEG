@@ -1,57 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:layout_gravity="center"
-    android:orientation="vertical" 
-    >
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:orientation="vertical"  
+    android:background="@drawable/beijing2">
 
     <Button
-        android:id="@+id/buttonback"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:background="@drawable/fragment3_backgroun"/>
+        android:id="@+id/buttonGame1"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:text="舒尔特" 
+        android:background="#AFFF0000"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:textColor="#FF000000"/>
+    <Button
+        android:id="@+id/buttonGame2"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:text="GMAE2" 
+        android:background="#AFFF7F00"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:textColor="#FF000000"/>
+    <Button
+        android:id="@+id/buttonGame3"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:text="GAME3" 
+        android:background="#AFFFFF00"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:textColor="#FF000000"/>
+    <Button
+        android:id="@+id/buttonGame4"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:text="GAME4" 
+        android:background="#AF7FFF00"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:textColor="#FF000000"/>
+    <Button
+        android:id="@+id/buttonGame5"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:text="Game5" 
+        android:background="#AF00FFFF"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:textColor="#FF000000"/>
+    <Button
+        android:id="@+id/buttonGame6"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:text="GAME6" 
+        android:background="#AF0000FF"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:textColor="#FF000000"/>
+    <Button
+        android:id="@+id/buttonGame7"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:text="GAME7" 
+        android:background="#AFB000B0"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:textColor="#FF000000"/>
 
-          <Button
-              android:id="@+id/button4"
-              android:layout_width="80dip"
-              android:layout_height="85dip"
-              android:layout_toLeftOf="@+id/button1"
-              android:layout_alignBottom="@+id/button5"/>
+    
+    
 
-          <Button
-              android:id="@+id/button3"
-              android:layout_width="85dip"
-              android:layout_height="75dip"
-              android:layout_above="@+id/button1"
-              android:layout_alignLeft="@+id/buttonback"/>
-
-          <Button
-              android:id="@+id/button5"
-              android:layout_width="80dip"
-              android:layout_height="100dip"
-              android:layout_alignTop="@+id/buttonback"
-              android:layout_toRightOf="@+id/button1"/>
-
-          <Button
-              android:id="@+id/button2"
-              android:layout_width="85dip"
-              android:layout_height="75dip"
-              android:layout_alignBaseline="@+id/button3"
-              android:layout_alignBottom="@+id/button3"
-              android:layout_alignRight="@+id/buttonback" />
-
-          <Button
-              android:id="@+id/button1"
-              android:layout_width="80dip"
-              android:layout_height="80dip"
-              android:layout_alignBottom="@+id/buttonback"
-              android:layout_centerHorizontal="true"/>
-
-        />
-
-</RelativeLayout>
+</LinearLayout>

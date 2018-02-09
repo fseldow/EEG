@@ -8,16 +8,12 @@ import com.github.mikephil.charting.components.Legend.LegendForm;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-
 import com.srtp.Attentionreader.R;
 
-
+import android.R.integer;
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -30,10 +26,7 @@ public class showdata extends Activity implements OnSeekBarChangeListener{
 	private String attdata[];
 	private SeekBar seekBar1;
 	private TextView textView1;
-	public int blackgroudcolor = Color.rgb(114, 188, 223);
-	public int linecolor = Color.WHITE;
 	int xprogress;
-	
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -44,24 +37,15 @@ public class showdata extends Activity implements OnSeekBarChangeListener{
 		setContentView(R.layout.showdata);
 		mychart = (LineChart)findViewById(R.id.chart1);
 		
-	//*******************************************************	
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		Log.e("exp", "he");
 		
-		int color2 =Color.rgb(114, 188, 223); 
-		String a  = sharedPreferences.getString("bgcolor", "#f0f8ff");
-		if (a.equals("-9257761"))
-		{
-			a=Integer.toString(Color.rgb(114, 188, 223));
-		}
-		Log.e("color", a);
-		blackgroudcolor = Color.parseColor(a);
-	//*****************************************************************************************	
+		Log.e("exp", "he11");
 		seekBar1 = (SeekBar)findViewById(R.id.seekBar1);
 		seekBar1.setMax(attdata.length);
 		seekBar1.setProgress(7);
 		seekBar1.setOnSeekBarChangeListener(this);
 		LineData mlineData = getLineData(attdata.length);		
-		showChart(mychart,mlineData,blackgroudcolor,linecolor);
+		showChart(mychart,mlineData,Color.rgb(114, 188, 223),Color.WHITE);
 		textView1 = (TextView)findViewById(R.id.tvXMax);
 		textView1.setTextColor(0xFFFFFFFF);
 		String str = String.valueOf(attdata.length); 
@@ -79,7 +63,10 @@ public class showdata extends Activity implements OnSeekBarChangeListener{
 		lineChart.setScaleXEnabled(true);
 		lineChart.setScaleYEnabled(false);
 		lineChart.setPinchZoom(true);
-		lineChart.setBackgroundColor(color);		
+		
+		
+		lineChart.setBackgroundColor(color);
+		
 		Legend mLegend = lineChart.getLegend();
 		mLegend.setForm(LegendForm.CIRCLE);
 		mLegend.setTextColor(color2);

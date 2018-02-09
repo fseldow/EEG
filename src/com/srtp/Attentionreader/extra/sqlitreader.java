@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
 import android.R.string;
 import android.content.Context;
 import android.database.Cursor;
@@ -142,18 +141,4 @@ public class sqlitreader{
 		}
 		return res;
 	}
-	public void dropTables(String tablenames) {
-		String sql = "select name, sql from sqlite_master where type = 'table'"; 
-		Cursor res = _db.rawQuery(sql, null);
-	    while(res.moveToNext()) {
-		 String table = res.getString(0);
-		 if(table.equals(tablenames)) {
-			sql = "drop table " + table;
-			_db.execSQL(sql);
-				}
-			}
-	
-	}
-
-
 }

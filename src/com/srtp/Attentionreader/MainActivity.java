@@ -1,12 +1,7 @@
 package com.srtp.Attentionreader;
 
-
-import com.srtp.Attentionreader.extra.preferenceActivity;
-
 import android.bluetooth.BluetoothAdapter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -22,7 +17,6 @@ import android.widget.TextView;
 public class MainActivity extends FragmentActivity{	
 	//定义FragmentTabHost对象
 	private FragmentTabHost mTabHost;
-	public static String Module;
 	public BluetoothAdapter mbluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 	//定义一个布局
 	private LayoutInflater layoutInflater;
@@ -39,20 +33,9 @@ public class MainActivity extends FragmentActivity{
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);  
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
-        Module  = sharedPreferences.getString("module", "experiment");
-        if(Module.equals("player")){
-        	fragmentArray[0]=FragmentPage3.class;
-        	fragmentArray[2]=FragmentPage1.class;
-        	mImageViewArray[0]=R.drawable.tab_game_btn;
-        	mImageViewArray[2]=R.drawable.tab_home_btn;
-        	mTextviewArray[0]="GAME";
-        	mTextviewArray[2]="RECORD";
-        }
-        initView();
-
+        setContentView(R.layout.activity_main);
         
+        initView();
     }
 	  public BluetoothAdapter getbluetoothAdaoter () {
 

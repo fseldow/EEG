@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.srtp.Attentionreader"
     android:versionCode="1"
-    android:versionName="1.5" >
+    android:versionName="1.0" >
 <uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
@@ -15,7 +14,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:restoreNeedsApplication="false">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -29,17 +28,7 @@
             android:name=".extra.showdata"
             android:label="data">
         </activity>
-        <activity android:name="com.games.GameSchulte"></activity>
-        <activity 
-            android:name="com.games.GameTable"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name="com.games.GameStare"></activity>
-        <activity android:name="com.games.GameWaterDrop"></activity>
-        <activity android:name="com.games.GameNumber"></activity>
-        <activity android:name="com.games.Test"></activity>
-        <activity android:name=".extra.preferenceActivity"></activity>
-        <activity android:name=".extra.showPieData"></activity>
-        <activity android:name=".extra.DeleteData"></activity>
+        <activity android:name=".GameSchulte"></activity>"
     </application>
 
 </manifest>
